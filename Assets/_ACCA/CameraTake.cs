@@ -5,30 +5,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class cameraTake : MonoBehaviour
+public class CameraTake : MonoBehaviour
 {
     [SerializeField] private UnityEngine.UI.RawImage _rawImage;
 
-    [SerializeField] private Button takePicture;
-
-
+    
     private WebCamTexture tex;
 
-    private void OnEnable()
-    {
-        takePicture.onClick.AddListener(TakePicture);
-    }
-
-    private void OnDisable()
-    {
-        takePicture.onClick.RemoveListener(TakePicture);
-    }
-
-    private void TakePicture()
+   
+    public Texture TakePicture()
     {
         tex.Stop();
-        takePicture.gameObject.SetActive(false);
-
+        return _rawImage.texture;
     }
 
 
