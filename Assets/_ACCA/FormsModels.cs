@@ -1,18 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 
 [Serializable]
 public class FormData
 {
     public string userId;
-    public int index;
+    public string uniqueIdentifier;
     public List<TextData> textDataList;
+    //public List<ImageData> textDataList;
 
-    public FormData(string userId, int index, List<TextData> textDataList)
+    public FormData(string userId, string uniqueIdentifier, List<TextData> textDataList)
     {
         this.userId = userId;
-        this.index = index;
+        this.uniqueIdentifier = uniqueIdentifier;
         this.textDataList = textDataList;
     }
 }
@@ -21,10 +23,14 @@ public class FormData
 [Serializable]
 public class TextData
 {
+    public int orderInFormulary;
+    public string name;
     public string content;
 
-    public TextData(string contentText)
+    public TextData(int orderInFormulary, string name,  string content)
     {
-        content = contentText;
+        this.orderInFormulary = orderInFormulary;
+        this.name = name;
+        this.content = content;
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,10 @@ using UnityEngine.UI;
 public class FormController : MonoBehaviour
 {
     public static event Action OnNewForm;
-    public static event Action OnNewTextForm;
+    public static event Action<TextForm> OnNewTextForm;
+
+    [SerializeField] private TMP_InputField tittle;
+
 
     [SerializeField] private Button newFormButton;
     [SerializeField] private Button cancelNewFormButton;
@@ -51,6 +55,10 @@ public class FormController : MonoBehaviour
         newFormButton.GameObject().SetActive(true);
         cancelNewFormButton.gameObject.SetActive(false);
         optionsButtons.SetActive(false);
+        var tF = textForm.GetComponent<TextForm>();
+        tF.name = tittle.text;
+        
+        OnNewTextForm?.Invoke(tF);
     }
     private void NewPictureForm()
     {

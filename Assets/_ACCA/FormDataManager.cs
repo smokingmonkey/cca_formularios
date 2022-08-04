@@ -3,13 +3,16 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FormDataController : MonoBehaviour
+public class FormDataManager : MonoBehaviour
 {
-    private int id;
+    private string tittle;
+    
+    private string userId;
+    public string UniqueIdentifier { get; }
 
-    [SerializeField] private TMP_InputField tittle;
+    //[SerializeField] private TMP_InputField tittle;
 
-    [SerializeField] private List<TextForm> textForm;
+    [SerializeField] private List<TextForm> textForms;
 
     [SerializeField] private List<ImageForm> imageForm;
 
@@ -21,20 +24,26 @@ public class FormDataController : MonoBehaviour
         // GetDataSerialized("xxx", 100);
     }
 
-    public string GetDataSerialized(string userId, int id)
+
+    public string GetDataSerialized()
     {
         List<TextData> textFormData = new List<TextData>();
 
-        foreach (var item in textForm)
+        foreach (var item in textForms)
         {
             textFormData.Add(item.GetData());
         }
 
-        FormData formData = new FormData(userId, id, textFormData);
-        var da = formData.Serialize();
-
+        FormData formData = new FormData(userId, UniqueIdentifier, textFormData);
 
         return formData.Serialize().json;
+    }
+
+
+    public void RegisterNewTextForm(TextForm form)
+    {
+        //form.orderInFormulary = orderInFormulary;
+        textForms.Add(form);
     }
 }
 

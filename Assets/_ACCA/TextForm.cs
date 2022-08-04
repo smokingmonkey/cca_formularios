@@ -7,7 +7,6 @@ public class TextForm : AbstractFormItem
 
     public TextData GetData()
     {
-        //return new TextData(content.text);
-        return new TextData("Dios");
+        return new TextData(orderInFormulary, name, content.text);
     }
 }
