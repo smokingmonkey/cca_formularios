@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TextForm : MonoBehaviour
+public class TextForm : AbstractFormItem
 {
     [SerializeField] private TMP_InputField content;
 

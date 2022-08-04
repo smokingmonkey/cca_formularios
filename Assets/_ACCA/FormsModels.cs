@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 
 [Serializable]
@@ -6,16 +7,15 @@ public class FormData
 {
     public string userId;
     public int index;
-    public TextData textData;
+    public List<TextData> textDataList;
 
-    public FormData(string userId, int index, TextData textData)
+    public FormData(string userId, int index, List<TextData> textDataList)
     {
         this.userId = userId;
         this.index = index;
-        this.textData = textData;
+        this.textDataList = textDataList;
     }
 }
-
 
 
 [Serializable]
@@ -28,5 +28,3 @@ public class TextData
         content = contentText;
     }
 }
-
-
