@@ -56,7 +56,7 @@ public class FormController : MonoBehaviour
         cancelNewFormButton.gameObject.SetActive(false);
         optionsButtons.SetActive(false);
         var tF = textForm.GetComponent<TextForm>();
-        tF.name = tittle.text;
+        tF.tittle.text = tittle.text;
         
         OnNewTextForm?.Invoke(tF);
     }

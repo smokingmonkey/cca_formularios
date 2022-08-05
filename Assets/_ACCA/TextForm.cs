@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class TextForm : AbstractFormItem
 {
-    [SerializeField] private TMP_InputField content;
+    [SerializeField] public TMP_InputField tittle;
+    [SerializeField] public TMP_InputField content;
 
+    
     public TextData GetData()
     {
-        return new TextData(orderInFormulary, name, content.text);
+        return new TextData(orderInFormulary, tittle.text, content.text);
     }
 }

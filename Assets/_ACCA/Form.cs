@@ -7,5 +7,5 @@ public abstract class AbstractFormItem : MonoBehaviour
 {
     
     public int orderInFormulary;
-    public string name;
+    //public string tittle;
 }

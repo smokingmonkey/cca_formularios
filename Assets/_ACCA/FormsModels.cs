@@ -24,13 +24,13 @@ public class FormData
 public class TextData
 {
     public int orderInFormulary;
-    public string name;
+    public string tittle;
     public string content;
 
-    public TextData(int orderInFormulary, string name,  string content)
+    public TextData(int orderInFormulary, string tittle,  string content)
     {
         this.orderInFormulary = orderInFormulary;
-        this.name = name;
+        this.tittle = tittle;
         this.content = content;
     }
 }

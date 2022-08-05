@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class FormDataManager : MonoBehaviour
 {
+
     private string tittle;
     
     private string userId;
-    public string UniqueIdentifier { get; }
+    public string uniqueIdentifier;
 
     //[SerializeField] private TMP_InputField tittle;
 
@@ -25,7 +26,7 @@ public class FormDataManager : MonoBehaviour
     }
 
 
-    public string GetDataSerialized()
+    public SerializationData GetDataSerialized()
     {
         List<TextData> textFormData = new List<TextData>();
 
@@ -34,9 +35,14 @@ public class FormDataManager : MonoBehaviour
             textFormData.Add(item.GetData());
         }
 
-        FormData formData = new FormData(userId, UniqueIdentifier, textFormData);
+        FormData formData = new FormData(userId, uniqueIdentifier, textFormData);
 
-        return formData.Serialize().json;
+        return formData.Serialize();
+    }
+
+    public void RegisterNewForm(int identifier)
+    {
+        uniqueIdentifier = identifier.ToString();
     }
 
 

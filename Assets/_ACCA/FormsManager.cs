@@ -10,7 +10,6 @@ public class FormsManager : MonoBehaviour
     [SerializeField] private GameObject formPrefab;
     [SerializeField] private Transform formsParent;
 
-    [SerializeField] private Button addFormButton;
 
     [SerializeField] private FormDataManager formDataManager;
     
