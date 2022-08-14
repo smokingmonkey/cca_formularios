@@ -7,13 +7,15 @@ using System.Security.Cryptography;
 public class FormData
 {
     public string userId;
+    public string tittle;
     public string uniqueIdentifier;
     public List<TextData> textDataList;
     //public List<ImageData> textDataList;
 
-    public FormData(string userId, string uniqueIdentifier, List<TextData> textDataList)
+    public FormData(string userId, string tittle,string uniqueIdentifier, List<TextData> textDataList)
     {
         this.userId = userId;
+        this.tittle = tittle;
         this.uniqueIdentifier = uniqueIdentifier;
         this.textDataList = textDataList;
     }

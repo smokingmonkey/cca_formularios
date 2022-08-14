@@ -10,7 +10,7 @@ public class OpenForm : MonoBehaviour
         GetComponent<Button>().onClick.AddListener
         (() =>
             {
-                FormsInstantiator.Instance.OpenForm(formData);
+                OpenFormsInstantiator.Instance.OpenForm(formData);
             }
         );
     }

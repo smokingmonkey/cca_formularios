@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class FormDataManager : MonoBehaviour
 {
+    [SerializeField]private TMP_InputField newFormtittle;
 
-    private string tittle;
-    
     private string userId;
     public string uniqueIdentifier;
 
@@ -35,7 +34,7 @@ public class FormDataManager : MonoBehaviour
             textFormData.Add(item.GetData());
         }
 
-        FormData formData = new FormData(userId, uniqueIdentifier, textFormData);
+        FormData formData = new FormData(userId, newFormtittle.text, uniqueIdentifier, textFormData);
 
         return formData.Serialize();
     }

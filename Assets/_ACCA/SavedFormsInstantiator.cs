@@ -39,14 +39,13 @@ public class SavedFormsInstantiator : MonoBehaviour
         {
             var data = SavingDataService.GetLocalDataByKey(i.ToString());
             forms.Add(data);
-            Debug.LogError(data.textDataList[i].content);
         }
 
         foreach (var item in forms)
         {
             var newButton = Instantiate(formPrefab, savedFormsButtonsParent.transform);
 
-            newButton.GetComponentInChildren<TMP_Text>().text = "Form " + item.uniqueIdentifier;
+            newButton.GetComponentInChildren<TMP_Text>().text = item.tittle;
 
             newButton.GetComponent<OpenForm>().formData = item;
         }

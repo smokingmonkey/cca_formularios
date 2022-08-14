@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class FormsInstantiator : MonoBehaviour
+public class OpenFormsInstantiator : MonoBehaviour
 {
-    public static FormsInstantiator Instance;
+    public static OpenFormsInstantiator Instance;
+
+    [SerializeField] private TMP_Text tittle;
 
     [SerializeField] private GameObject formularyPrefab;
 
@@ -20,6 +23,8 @@ public class FormsInstantiator : MonoBehaviour
     public void OpenForm(FormData formData)
     {
         UiReferences.Instance.OpenVisualizerPanel();
+
+        tittle.text = formData.tittle;
         
         foreach (var item in formData.textDataList)
         {
