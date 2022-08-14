@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FormsManager : MonoBehaviour
+public class NewFormsManager : MonoBehaviour
 {
     [SerializeField] private TMP_InputField tittle;
     

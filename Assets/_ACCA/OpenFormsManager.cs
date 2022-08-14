@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class OpenFormsInstantiator : MonoBehaviour
+public class OpenFormsManager : MonoBehaviour
 {
-    public static OpenFormsInstantiator Instance;
+    public static OpenFormsManager Instance;
 
     [SerializeField] private TMP_Text tittle;
 
@@ -14,9 +15,23 @@ public class OpenFormsInstantiator : MonoBehaviour
 
     [SerializeField] private GameObject parent;
 
+    private List<GameObject> formsItemsGameObjects = new List<GameObject>();
+    
+    [SerializeField] Button returnButton;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void OnEnable()
+    {
+        returnButton.onClick.AddListener(ClearOpenedForm);
+    }
+
+    private void OnDisable()
+    {
+        returnButton.onClick.RemoveListener(ClearOpenedForm);
     }
 
 
@@ -29,12 +44,20 @@ public class OpenFormsInstantiator : MonoBehaviour
         foreach (var item in formData.textDataList)
         {
             GameObject newForm = Instantiate(formularyPrefab, parent.transform);
+            
+            formsItemsGameObjects.Add(newForm);
 
             var controller = newForm.GetComponent<FormInstancerController>();
 
             controller.NewTextForm(item.tittle, item.content);
         }
-        
-        
+    }
+
+    public void ClearOpenedForm()
+    {
+        foreach (var formsItemsGameObject in formsItemsGameObjects)
+        {
+            Destroy(formsItemsGameObject);
+        }
     }
 }

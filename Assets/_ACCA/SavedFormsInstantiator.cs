@@ -47,7 +47,7 @@ public class SavedFormsInstantiator : MonoBehaviour
 
             newButton.GetComponentInChildren<TMP_Text>().text = item.tittle;
 
-            newButton.GetComponent<OpenForm>().formData = item;
+            newButton.GetComponent<OpenFormButton>().formData = item;
         }
     }
 }

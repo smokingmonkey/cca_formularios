@@ -1,21 +1,21 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OpenForm : MonoBehaviour
+public class OpenFormButton : MonoBehaviour
 {
     public FormData formData;
+
     private void OnEnable()
     {
         GetComponent<Button>().onClick.AddListener
         (() =>
             {
-                OpenFormsInstantiator.Instance.OpenForm(formData);
+                OpenFormsManager.Instance.OpenForm(formData);
             }
         );
     }
-
-  
 
     private void OnDisable()
     {
