@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using _ACCA.Scripts.Models;
 using TMPro;
@@ -13,15 +12,17 @@ public class SavedFormsInstantiator : MonoBehaviour
     [SerializeField] private Button formPrefab;
     [SerializeField] private GameObject savedFormsButtonsParent;
 
+    private int lastAmountOfForms;
+
 
     private void Start()
     {
-        FillData();
     }
 
     private void OnEnable()
     {
         update.onClick.AddListener(FillData);
+        FillData();
     }
 
     private void OnDisable()
@@ -32,23 +33,33 @@ public class SavedFormsInstantiator : MonoBehaviour
     private void FillData()
     {
         List<FormData> forms = new List<FormData>();
-        int lasIdentifier = int.Parse(SavingDataService.GetLastUniqueIdentifier());
+        int lastIdentifier;
 
-        var upperLimit = lasIdentifier + 1;
-
-        for (int i = 0; i < upperLimit; i++)
+        try
         {
-            var data = SavingDataService.GetLocalDataByKey(i.ToString());
-            forms.Add(data);
+            lastIdentifier = int.Parse(SavingDataService.GetLastUniqueIdentifier());
+            var upperLimit = lastIdentifier + 1;
+
+            for (int i = lastAmountOfForms; i < upperLimit; i++)
+            {
+                var data = SavingDataService.GetLocalDataByKey(i.ToString());
+                forms.Add(data);
+                lastAmountOfForms++;
+            }
+
+            foreach (var item in forms)
+            {
+                var newButton = Instantiate(formPrefab, savedFormsButtonsParent.transform);
+
+                newButton.GetComponentInChildren<TMP_Text>().text = item.tittle;
+
+                newButton.GetComponent<OpenFormButton>().formData = item;
+            }
         }
-
-        foreach (var item in forms)
+        catch (Exception e)
         {
-            var newButton = Instantiate(formPrefab, savedFormsButtonsParent.transform);
-
-            newButton.GetComponentInChildren<TMP_Text>().text = item.tittle;
-
-            newButton.GetComponent<OpenFormButton>().formData = item;
+            Console.WriteLine(e);
+            throw;
         }
     }
 }
