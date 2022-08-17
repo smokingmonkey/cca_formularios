@@ -10,7 +10,7 @@ namespace _ACCA.Scripts.Controllers.FormItems
     {
         public event Action<int> AddRows;
 
-        private int currentNumberOfRows = 1;
+        private int currentNumberOfRows;
 
         [SerializeField] TMP_InputField casillaPrefab;
 
@@ -33,15 +33,19 @@ namespace _ACCA.Scripts.Controllers.FormItems
             addRow.onClick.RemoveListener(AddRow);
         }
 
-        public void AddColumn()
+        private void Start()
         {
-            var tableColumnController = Instantiate(columnsParent, TableCOntrollerParent.transform);
-            tableColumnController.Init(this, casillaPrefab);
-            
-            AddRows?.Invoke(currentNumberOfRows);
+            currentNumberOfRows = 1;
+            AddColumn();
         }
 
-        public void AddRow()
+        void AddColumn()
+        {
+            var tableColumnController = Instantiate(columnsParent, TableCOntrollerParent.transform);
+            tableColumnController.Init(this, casillaPrefab, currentNumberOfRows);
+        }
+
+        void AddRow()
         {
             AddRows?.Invoke(1);
             currentNumberOfRows++;

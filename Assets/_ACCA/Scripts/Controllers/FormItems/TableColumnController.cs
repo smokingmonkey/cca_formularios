@@ -27,10 +27,11 @@ namespace _ACCA.Scripts.Controllers.FormItems
             }
         }
 
-        public void Init(TablesForm tablesForm, TMP_InputField casillaPrefab)
+        public void Init(TablesForm tablesForm, TMP_InputField casillaPrefab, int currentNumberOfRows)
         {
             this.tableForm = tablesForm;
             this.casillaPrefab = casillaPrefab;
+            AddRows(currentNumberOfRows);
             tableForm.AddRows += AddRows;
         }
 
