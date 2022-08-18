@@ -32,7 +32,7 @@ public class NewFormsManager : MonoBehaviour
         FormController.OnNewTextForm += RegisterNewTextForm;
         
         clearFormButton.onClick.AddListener(ClearForms);
-        saveFormButton.onClick.AddListener(ClearForms);
+        //saveFormButton.onClick.AddListener(ClearForms);
     }
 
     private void OnDisable()
@@ -41,7 +41,7 @@ public class NewFormsManager : MonoBehaviour
         FormController.OnNewTextForm -= RegisterNewTextForm;
         
         clearFormButton.onClick.RemoveListener(ClearForms);
-        saveFormButton.onClick.RemoveListener(ClearForms);
+        //saveFormButton.onClick.RemoveListener(ClearForms);
     }
 
     private void Start()

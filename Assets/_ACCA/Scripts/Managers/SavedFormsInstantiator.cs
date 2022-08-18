@@ -35,9 +35,12 @@ public class SavedFormsInstantiator : MonoBehaviour
         List<FormData> forms = new List<FormData>();
         int lastIdentifier;
 
-        try
+        var dataToParse = SavingDataService.GetLastUniqueIdentifier();
+        if (dataToParse != null)
         {
-            lastIdentifier = int.Parse(SavingDataService.GetLastUniqueIdentifier());
+
+
+            lastIdentifier = int.Parse(dataToParse);
             var upperLimit = lastIdentifier + 1;
 
             for (int i = lastAmountOfForms; i < upperLimit; i++)
@@ -56,10 +59,6 @@ public class SavedFormsInstantiator : MonoBehaviour
                 newButton.GetComponent<OpenFormButton>().formData = item;
             }
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+       
     }
 }
