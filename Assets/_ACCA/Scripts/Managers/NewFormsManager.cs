@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _ACCA.Scripts.Controllers;
 using _ACCA.Scripts.Controllers.FormItems;
 using TMPro;
 using UnityEngine;
@@ -29,8 +30,8 @@ namespace _ACCA.Scripts.Managers
 
         private void OnEnable()
         {
-            FormController.OnNewForm += AddNewFormItem;
-            FormController.OnNewTextForm += RegisterNewTextForm;
+            FormItemController.OnNewForm += AddNewFormItem;
+            FormItemController.OnNewTextForm += RegisterNewTextForm;
         
             clearFormButton.onClick.AddListener(ClearForms);
             //saveFormButton.onClick.AddListener(ClearForms);
@@ -38,8 +39,8 @@ namespace _ACCA.Scripts.Managers
 
         private void OnDisable()
         {
-            FormController.OnNewForm -= AddNewFormItem;
-            FormController.OnNewTextForm -= RegisterNewTextForm;
+            FormItemController.OnNewForm -= AddNewFormItem;
+            FormItemController.OnNewTextForm -= RegisterNewTextForm;
         
             clearFormButton.onClick.RemoveListener(ClearForms);
             //saveFormButton.onClick.RemoveListener(ClearForms);
