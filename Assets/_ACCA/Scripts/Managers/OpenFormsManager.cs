@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _ACCA.Scripts.Controllers;
 using _ACCA.Scripts.Models;
 using TMPro;
 using UnityEngine;
@@ -48,7 +49,7 @@ namespace _ACCA.Scripts.Managers
             
                 formsItemsGameObjects.Add(newForm);
 
-                var controller = newForm.GetComponent<FormInstancerController>();
+                var controller = newForm.GetComponent<FormOptionsInstancer>();
 
                 controller.NewTextForm(item.tittle, item.content);
             }
