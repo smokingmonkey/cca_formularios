@@ -1,80 +1,82 @@
-using System;
 using System.Collections.Generic;
 using _ACCA.Scripts.Controllers.FormItems;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewFormsManager : MonoBehaviour
+namespace _ACCA.Scripts.Managers
 {
-    [SerializeField] private TMP_InputField tittle;
+    public class NewFormsManager : MonoBehaviour
+    {
+        [SerializeField] private TMP_InputField tittle;
 
-    [SerializeField] private GameObject formPrefab;
-    [SerializeField] private Transform formsParent;
+        [SerializeField] private GameObject formPrefab;
+        [SerializeField] private Transform formsParent;
 
 
-    [SerializeField] private FormDataManager formDataManager;
+        [SerializeField] private FormDataManager formDataManager;
 
-    private List<GameObject> forms;
+        private List<GameObject> forms;
 
-    private int orderInFormulary;
+        private int orderInFormulary;
     
     
-    private List<GameObject> formsGameObjects = new();
+        private List<GameObject> formsGameObjects = new();
 
 
-    [SerializeField] private Button clearFormButton;
-    [SerializeField] private Button saveFormButton;
+        [SerializeField] private Button clearFormButton;
+        [SerializeField] private Button saveFormButton;
 
-    private void OnEnable()
-    {
-        FormController.OnNewForm += AddNewFormItem;
-        FormController.OnNewTextForm += RegisterNewTextForm;
-        
-        clearFormButton.onClick.AddListener(ClearForms);
-        //saveFormButton.onClick.AddListener(ClearForms);
-    }
-
-    private void OnDisable()
-    {
-        FormController.OnNewForm -= AddNewFormItem;
-        FormController.OnNewTextForm -= RegisterNewTextForm;
-        
-        clearFormButton.onClick.RemoveListener(ClearForms);
-        //saveFormButton.onClick.RemoveListener(ClearForms);
-    }
-
-    private void Start()
-    {
-        AddNewFormItem();
-    }
-
-    void AddNewFormItem()
-    {
-        var itemGameObject = Instantiate(formPrefab, formsParent);
-        formsGameObjects.Add(itemGameObject);
-        orderInFormulary++;
-    }
-
-    private void RegisterNewTextForm(TextForm obj)
-    {
-        obj.orderInFormulary = orderInFormulary;
-
-        formDataManager.RegisterNewTextForm(obj);
-    }
-
-
-    void ClearForms()
-    {
-        foreach (var formsGameObject in formsGameObjects)
+        private void OnEnable()
         {
-            Destroy(formsGameObject);
+            FormController.OnNewForm += AddNewFormItem;
+            FormController.OnNewTextForm += RegisterNewTextForm;
+        
+            clearFormButton.onClick.AddListener(ClearForms);
+            //saveFormButton.onClick.AddListener(ClearForms);
         }
 
-        orderInFormulary = 0;
-
-        tittle.text = "";
+        private void OnDisable()
+        {
+            FormController.OnNewForm -= AddNewFormItem;
+            FormController.OnNewTextForm -= RegisterNewTextForm;
         
-        AddNewFormItem();
+            clearFormButton.onClick.RemoveListener(ClearForms);
+            //saveFormButton.onClick.RemoveListener(ClearForms);
+        }
+
+        private void Start()
+        {
+            AddNewFormItem();
+        }
+
+        void AddNewFormItem()
+        {
+            var itemGameObject = Instantiate(formPrefab, formsParent);
+            formsGameObjects.Add(itemGameObject);
+            orderInFormulary++;
+        }
+
+        private void RegisterNewTextForm(TextForm obj)
+        {
+            obj.orderInFormulary = orderInFormulary;
+
+            formDataManager.RegisterNewTextForm(obj);
+        }
+
+
+        void ClearForms()
+        {
+            foreach (var formsGameObject in formsGameObjects)
+            {
+                Destroy(formsGameObject);
+            }
+
+            orderInFormulary = 0;
+
+            tittle.text = "";
+        
+            AddNewFormItem();
+        }
     }
 }

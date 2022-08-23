@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPrefsUtils : MonoBehaviour
+namespace _ACCA.Scripts.Utilities
 {
-    public void Clear()
+    public class PlayerPrefsUtils : MonoBehaviour
     {
-        PlayerPrefs.DeleteAll();
+        public void Clear()
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 }

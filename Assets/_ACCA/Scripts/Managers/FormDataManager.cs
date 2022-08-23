@@ -5,52 +5,55 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FormDataManager : MonoBehaviour
+namespace _ACCA.Scripts.Managers
 {
-    [SerializeField]private TMP_InputField newFormtittle;
-
-    private string userId;
-    public string uniqueIdentifier;
-
-    //[SerializeField] private TMP_InputField tittle;
-
-    [SerializeField] private List<TextForm> textForms;
-
-    [SerializeField] private List<ImageForm> imageForm;
-
-    private void Start()
+    public class FormDataManager : MonoBehaviour
     {
-        // textForm.Add(new TextForm());
-        // textForm.Add(new TextForm());
-        //
-        // GetDataSerialized("xxx", 100);
-    }
+        [SerializeField]private TMP_InputField newFormtittle;
 
+        private string userId;
+        public string uniqueIdentifier;
 
-    public SerializationData GetDataSerialized()
-    {
-        List<TextData> textFormData = new List<TextData>();
+        //[SerializeField] private TMP_InputField tittle;
 
-        foreach (var item in textForms)
+        [SerializeField] private List<TextForm> textForms;
+
+        [SerializeField] private List<ImageForm> imageForm;
+
+        private void Start()
         {
-            textFormData.Add(item.GetData());
+            // textForm.Add(new TextForm());
+            // textForm.Add(new TextForm());
+            //
+            // GetDataSerialized("xxx", 100);
         }
 
-        FormData formData = new FormData(userId, newFormtittle.text, uniqueIdentifier, textFormData);
 
-        return formData.Serialize();
-    }
+        public SerializationData GetDataSerialized()
+        {
+            List<TextData> textFormData = new List<TextData>();
 
-    public void RegisterNewForm(int identifier)
-    {
-        uniqueIdentifier = identifier.ToString();
-    }
+            foreach (var item in textForms)
+            {
+                textFormData.Add(item.GetData());
+            }
+
+            FormData formData = new FormData(userId, newFormtittle.text, uniqueIdentifier, textFormData);
+
+            return formData.Serialize();
+        }
+
+        public void RegisterNewForm(int identifier)
+        {
+            uniqueIdentifier = identifier.ToString();
+        }
 
 
-    public void RegisterNewTextForm(TextForm form)
-    {
-        //form.orderInFormulary = orderInFormulary;
-        textForms.Add(form);
+        public void RegisterNewTextForm(TextForm form)
+        {
+            //form.orderInFormulary = orderInFormulary;
+            textForms.Add(form);
+        }
     }
 }
 
