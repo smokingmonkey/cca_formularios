@@ -56,7 +56,7 @@ namespace _ACCA.Scripts.Controllers
         {
             textForm.SetActive(true);
             newFormButton.GameObject().SetActive(true);
-            cancelNewFormButton.gameObject.SetActive(false);
+            // cancelNewFormButton.gameObject.SetActive(false);
             optionsButtons.SetActive(false);
             var tF = textForm.GetComponent<TextForm>();
             tF.tittle.text = tittle.text;
@@ -75,7 +75,7 @@ namespace _ACCA.Scripts.Controllers
         {
             tableForm.SetActive(true);
             newFormButton.GameObject().SetActive(true);
-            cancelNewFormButton.gameObject.SetActive(false);
+            //cancelNewFormButton.gameObject.SetActive(false);
             optionsButtons.SetActive(false);
         }
     }
